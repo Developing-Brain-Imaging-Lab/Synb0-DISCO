@@ -65,21 +65,9 @@ def inference(T1_path, b0_d_path, model, device):
     return img_model
 
 
-if __name__ == '__main__':
-    # Get input arguments ----------------------------------#
-    T1_input_path = sys.argv[1]
-    b0_input_path = sys.argv[2]
-    b0_output_path = sys.argv[3]
-    model_path = sys.argv[4]
 
-    print('T1 input path: ' + T1_input_path)
-    print('b0 input path: ' + b0_input_path)
-    print('b0 output path: ' + b0_output_path)
-    print('Model path: ' + model_path)
+if run_inference(T1_input_path, b0_input_path, b0_output_path, model_path):
 
-    # Run code ---------------------------------------------#
-
-    # Get device
     device = torch.device("cuda")
 
     # Get model
@@ -93,3 +81,32 @@ if __name__ == '__main__':
     nii_template = nib.load(b0_input_path)
     nii = nib.Nifti1Image(util.torch2nii(img_model.detach().cpu()), nii_template.affine, nii_template.header)
     nib.save(nii, b0_output_path)
+
+#if __name__ == '__main__':
+#    # Get input arguments ----------------------------------#
+#    T1_input_path = sys.argv[1]
+#    b0_input_path = sys.argv[2]
+#    b0_output_path = sys.argv[3]
+#    model_path = sys.argv[4]
+#
+#    print('T1 input path: ' + T1_input_path)
+#    print('b0 input path: ' + b0_input_path)
+#    print('b0 output path: ' + b0_output_path)
+#    print('Model path: ' + model_path)
+#
+#    # Run code ---------------------------------------------#
+#
+#    # Get device
+#    device = torch.device("cuda")
+#
+#    # Get model
+#    model = UNet3D(2, 1).to(device)
+#    model.load_state_dict(torch.load(model_path))
+#
+#    # Inference
+#    img_model = inference(T1_input_path, b0_input_path, model, device)
+#
+#    # Save
+#    nii_template = nib.load(b0_input_path)
+#    nii = nib.Nifti1Image(util.torch2nii(img_model.detach().cpu()), nii_template.affine, nii_template.header)
+#    nib.save(nii, b0_output_path)
