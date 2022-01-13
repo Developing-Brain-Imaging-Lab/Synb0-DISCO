@@ -18,9 +18,9 @@ import nibabel as nib
 import torch
 import torch.nn as nn
 
-import util
+from . import util
 
-from model import UNet3D
+from .model import UNet3D
 
 
 def inference(T1_path, b0_d_path, model, device):
