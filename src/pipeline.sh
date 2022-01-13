@@ -10,7 +10,6 @@ do
     esac
 done
 
-
 # Set path for executable
 export PATH=$PATH:/extra
 
