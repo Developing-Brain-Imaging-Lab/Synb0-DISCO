@@ -66,7 +66,7 @@ def inference(T1_path, b0_d_path, model, device):
 
 
 
-if run_inference(T1_input_path, b0_input_path, b0_output_path, model_path):
+def run_inference(T1_input_path, b0_input_path, b0_output_path, model_path):
 
     device = torch.device("cuda")
 
